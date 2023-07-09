@@ -1,0 +1,71 @@
+﻿<local:FramedPage x:Class="Zadatak.ListPublisherPage"
+                  x:TypeArguments="viewmodel:PublisherViewModel"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Zadatak" xmlns:viewmodel="clr-namespace:Zadatak.ViewModels"
+                  mc:Ignorable="d" 
+      d:DesignHeight="400" d:DesignWidth="600"
+      Title="ListPublisherPage">
+
+    <Grid Background="{StaticResource GradientBackground}">
+        <ListView Margin="28,71,26,98" Name="LvPublishers" AlternationCount="2">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <EventSetter Event="MouseDoubleClick"
+                                 Handler="BtnEdit_Click"/>
+                    <Setter Property="Background" Value="LightBlue"/>
+                    <Style.Triggers>
+                        <Trigger Property="ListView.AlternationIndex" Value="1">
+                            <Setter Property="Background" Value="White"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="true" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Background" Value="CadetBlue" />
+                        </MultiTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="130" Header="Name" DisplayMemberBinding="{Binding Name}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button
+            x:Name="BtnBack"
+            Background="Transparent"
+            BorderBrush="Transparent"
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Top" 
+            Width="25"
+            Height="25"
+            Margin="30"
+            Click="BtnBack_Click">
+            <Image Source="/Assets/back.png" RenderTransformOrigin="0.429,-0.048"/>
+        </Button>
+        <Button 
+            x:Name="BtnEdit"
+            Content="Edit" 
+            Foreground="WhiteSmoke"
+            Background="#13242C"
+            Click="BtnEdit_Click"
+            HorizontalAlignment="Left" Margin="330,335,0,0" VerticalAlignment="Top" Width="95" Height="29"/>
+        <Button 
+            x:Name="BtnAdd"
+            Foreground="WhiteSmoke"
+            Background="#FF246844"
+            Click="BtnAdd_Click"
+            Content="Add" HorizontalAlignment="Left" Margin="194,335,0,0" VerticalAlignment="Top" Width="95" Height="29"/>
+        <Button 
+            x:Name="BtnDelete"
+            Foreground="WhiteSmoke"
+            Background="#FFD41B43"
+            Click="BtnDelete_Click"
+            Content="Delete" HorizontalAlignment="Left" Margin="465,335,0,0" VerticalAlignment="Top" Width="95" Height="29"/>
+
+    </Grid>
+</local:FramedPage>
